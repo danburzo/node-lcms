@@ -9,9 +9,9 @@ You need to have LittleCMS installed. On Unix-based systems (including macOS), y
 ```bash
 git clone git@github.com:mm2/Little-CMS.git
 cd Little-CMS
-./configure 
-make 
-make check 
+./configure
+make
+make check
 make install
 ```
 
@@ -27,10 +27,15 @@ yarn add node-lcms
 
 ## API reference
 
-### `transform()`
+### `converter()`
 
 This is a wrapper over the `transicc` utility, which converts colors based on ICC profiles.
 
 ```js
-let { transform } = require('node-lcms');
+let { converter } = require('node-lcms');
+
+let conv = converter('profile', opts);
+conv('red').then(res => {
+	console.log(res);
+});
 ```

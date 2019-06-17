@@ -1,5 +1,8 @@
-let transform = require('./api/transform');
+import { defineMode } from 'culori';
+import cmyk from './cmyk/definition';
 
-module.exports = {
-	transform
+const register = profile => {
+	defineMode(cmyk(profile));
 };
+
+export { register };
