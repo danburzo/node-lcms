@@ -1,10 +1,10 @@
 import tape from 'tape';
-import convertRgbToCmyk from '../src/cmyk/convertRgbToCmyk';
-import { rgb } from 'culori';
+import { convert } from '../src/index';
 
-let conv = convertRgbToCmyk('*sRGB');
-
-tape('convert()', t => {
-	t.equal(conv(rgb('red')), 'red');
+tape('convert from sRGB to sRGB', t => {
+	let conv = convert({ intent: 10 });
+	t.deepEqual(conv([10, 10, 10]), [10, 10, 10]);
+	t.deepEqual(conv([0, 0, 0]), [0, 0, 0]);
+	t.deepEqual(conv([255, 210, 135]), [255, 210, 135]);
 	t.end();
 });
