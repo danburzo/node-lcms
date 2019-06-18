@@ -6,8 +6,7 @@ export default [
 		input: 'src/index.js',
 		output: {
 			file: pkg.main,
-			format: 'cjs',
-			name: 'node-lcms'
+			format: 'cjs'
 		},
 		external: ['child_process'],
 		plugins: [buble({ objectAssign: 'Object.assign' })]
