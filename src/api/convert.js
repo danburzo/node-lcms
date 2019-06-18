@@ -5,7 +5,11 @@ const DEFAULT_OPTS = {
 	profile_in: '*sRGB',
 
 	// output profile
-	profile_out: '*sRGB'
+	profile_out: '*sRGB',
+
+	bpc: false,
+	bounded: false,
+	rounded: false
 };
 
 /*
@@ -14,7 +18,10 @@ const DEFAULT_OPTS = {
 const OPT_TO_FLAG = {
 	profile_in: v => ['-i', v],
 	profile_out: v => ['-o', v],
-	intent: v => [`-t${v}`]
+	intent: v => [`-t${v}`],
+	bpc: v => [v ? '-b' : ''],
+	bounded: v => [v ? '-s' : ''],
+	rounded: v => [v ? '-q' : '']
 };
 
 const to_flag = ([k, v]) => OPT_TO_FLAG[k](v);
@@ -29,7 +36,7 @@ export default (opts = {}) => {
 			...DEFAULT_OPTS,
 			...opts
 		}).map(to_flag)
-	);
+	).filter(f => f);
 
 	return arr => {
 		let input = `${arr.join('\n') + '\n'}`;
