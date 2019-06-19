@@ -35,11 +35,13 @@ This is a wrapper over the Little CMS's `transicc` utility, which converts color
 let { convert } = require('node-lcms');
 
 let conv = convert({
-	profile_out: require.resolve('color-profiles/pso-coated-v3.icc')
+	profile_out: '/path/to/some-profile.icc'
 });
 
 console.log(conv([255, 0, 0]));
 ```
+
+#### Options
 
 `intent`:
 
@@ -70,11 +72,17 @@ Built-in profiles:
 | `*null`    | Monochrome black for all input                  |
 | `*Lin2222` | CMYK linearization of gamma 2.2 on each channel |
 
+### Where to get more ICC profiles?
+
+-   [ICC Profile Registry](http://www.color.org/registry/index.xalter)
+-   [ECI](http://www.eci.org/en/downloads)
+
+> If you have Adobe products installed, you can find a bunch of common ICC profiles on your computer at `/Library/Application Support/Adobe/Color/Profiles/Recommended` (on macOS)
+
 ## Acknowledgements
 
 This project is indebted to James Pederson's [node-transicc](https://github.com/jpederson/node-transicc) for instructions on how to install LittleCMS from source and how to interface with it in Node.js.
 
 ## See also
 
--   [color-profiles](https://github.com/danburzo/color-profiles)
 -   [rust-lcms2](https://github.com/kornelski/rust-lcms2)
